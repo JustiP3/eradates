@@ -4,10 +4,20 @@ import DateForm from '../components/DateForm'
 
 class Container extends Component {
 
+    state = {
+        relationshipStatus: "a",
+        dateType: "b",
+        budget: 0, 
+        era: "c"
+    }
+
+    handleSubmit = (info) => {
+        this.setState(info)        
+    }
 
     render() {
         return(
-            <DateForm />
+            <DateForm onSubmit={this.handleSubmit} data={this.state} />
         );
     };
 
