@@ -1,12 +1,12 @@
 import React from 'react';
-import Wrapper from './containers/Wrapper.js'
+import Container from './containers/Container.js'
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-       <Wrapper /> 
-    </div>
+
+       <Container /> 
+
   );
 }
 
