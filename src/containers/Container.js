@@ -17,7 +17,9 @@ class Container extends Component {
 
     render() {
         return(
-            <DateForm onSubmit={this.handleSubmit} data={this.state} />
+            <div className="container">
+              <DateForm onSubmit={this.handleSubmit} data={this.state} />
+            </div>
         );
     };
 
