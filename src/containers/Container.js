@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../Test.css'
 import Welcome from '../components/Welcome'
 import RelationshipStatus from '../components/RelationshipStatus'
+import DateType from '../components/DateType'
 
 
 
@@ -9,33 +10,44 @@ class Container extends Component {
 
   state = {
       stage: "welcome",
-      relationshipStatus: "a",
-      dateType: "b",
+      relationshipStatus: "",
+      dateType: "",
       budget: 0, 
-      era: "c"
+      era: ""
   }
 
     handleWelcomeClick = (event) => {
         this.setState({...this.state, stage: "relationshipStatus"})
     }
 
-    handleRelationshipStatusSubmit = (event) => {
-        event.preventDefault() 
-        debugger 
+    handleRelationshipStatusSubmit = (event) => { 
         this.setState({...this.state, stage: "dateType", relationshipStatus: event.target.innerText})
+    }
+
+    handleDateTypeSubmit = (event) => {
+        this.setState({...this.state, stage: "era", dateType: event.target.innerText})
+    }
+
+    handleEraSubmit = (event) => {
+        this.setState({...this.state, stage: "budget", era: event.target.innerText})
+    }
+
+    handleBudgetSubmit = (event) => {
+        this.setState({...this.state, stage: "results", budget: event.target.innerText})
     }
 
   
 
-  render() {
-    
+  render() {    
 
     if (this.state.stage === "welcome") {
         return (  <Welcome handleWelcomeClick={this.handleWelcomeClick} />)
     } else if (this.state.stage === "relationshipStatus") {
         return ( <RelationshipStatus handleClick={this.handleRelationshipStatusSubmit} /> )
     } else if (this.state.stage === "dateType") {
-        return ( <h1>{this.state.relationshipStatus}</h1>)
+        return ( <DateType handleClick={this.handleDateTypeSubmit} /> )
+    } else if (this.state.stage === "era") {
+        return ( <h1>ERA type: {this.state.dateType}</h1> )
     }
     
   };
