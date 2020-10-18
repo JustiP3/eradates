@@ -50,11 +50,11 @@ class Container extends Component {
     } else if (this.state.stage === "dateType") {
         return ( <DateType handleClick={this.handleDateTypeSubmit} /> )
     } else if (this.state.stage === "era") {
-        return ( <Era /> )
+        return ( <Era handleClick={this.handleEraSubmit} /> )
     } else if (this.state.stage === "budget") {
-        return ( <Budget /> )
+        return ( <Budget handleClick={this.handleBudgetSubmit} /> )
     } else if (this.state.stage === "results") {
-        return ( <Results /> )
+        return ( <Results state={this.state} /> )
     }
     
   };
