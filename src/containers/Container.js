@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../Test.css'
 import Welcome from '../components/Welcome'
+import RelationshipStatus from '../components/RelationshipStatus'
 
 
 
@@ -18,6 +19,12 @@ class Container extends Component {
         this.setState({...this.state, stage: "relationshipStatus"})
     }
 
+    handleRelationshipStatusSubmit = (event) => {
+        event.preventDefault() 
+        debugger 
+        this.setState({...this.state, stage: "dateType", relationshipStatus: event.target.innerText})
+    }
+
   
 
   render() {
@@ -26,11 +33,9 @@ class Container extends Component {
     if (this.state.stage === "welcome") {
         return (  <Welcome handleWelcomeClick={this.handleWelcomeClick} />)
     } else if (this.state.stage === "relationshipStatus") {
-        return (
-            <div className="container">
-                <h1>relationshipstatus</h1>
-            </div>
-        )
+        return ( <RelationshipStatus handleClick={this.handleRelationshipStatusSubmit} /> )
+    } else if (this.state.stage === "dateType") {
+        return ( <h1>{this.state.relationshipStatus}</h1>)
     }
     
   };
