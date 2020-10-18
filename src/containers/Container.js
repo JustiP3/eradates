@@ -22,17 +22,32 @@ class Container extends Component {
       this.setState(info)        
   }
 
+  handleScroll = (event) => {
+      event.preventDefault()
+      this.setState({...this.state, stage: "relationshipStatus"})
+  }
+
+  
+
   render() {
+    const handleWelcomeClick = (event) => {
+        this.setState({...this.state, stage: "relationshipStatus"})
+    }
+
     if (this.state.stage === "welcome") {
         return (
-            <div className="container">             
+            <div className="container" onScroll={this.handleScroll} onClick={handleWelcomeClick}>             
                 <Bounce top>
                     <h1>Welcome</h1>
                 </Bounce> 
             </div>
         )
     } else if (this.state.stage === "relationshipStatus") {
-
+        return (
+            <div className="container">
+                <h1>relationshipstatus</h1>
+            </div>
+        )
     }
     
       return(
