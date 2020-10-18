@@ -1,22 +1,26 @@
 
-.example-enter {
-    opacity: 0.01;
-  }
-  
-  .example-enter.example-enter-active {
-    opacity: 1;
-    transition: opacity 1000ms ease-in;
-  }
-  
-  .example-leave {
-    opacity: 1;
-  }
-  
-  .example-leave.example-leave-active {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
-  }
 
-  .asdf {
-    color: red; 
-  }
+html, body, #root, .App {
+  height: 100%;
+  background-color: darksalmon;
+}
+.container {
+  height: 100%;
+  width: 100%;
+  background-color: blue;
+  text-align: center;
+  padding: 100px;
+}
+
+.center {
+  margin: auto; 
+
+}
+
+h1.react-reveal {
+  margin: 100px;
+}
+.container .Zoom h1 {
+  font-size: 900%;
+  margin-top: 100px;
+}
