@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import '../Test.css'
-import DateForm from '../components/DateForm'
-import Zoom from 'react-reveal/Zoom';
-import Bounce from 'react-reveal/Bounce';
+import Welcome from '../components/Welcome'
 
 
 
@@ -16,32 +14,17 @@ class Container extends Component {
       era: "c"
   }
 
-  
-
-  handleSubmit = (info) => {
-      this.setState(info)        
-  }
-
-  handleScroll = (event) => {
-      event.preventDefault()
-      this.setState({...this.state, stage: "relationshipStatus"})
-  }
+    handleWelcomeClick = (event) => {
+        this.setState({...this.state, stage: "relationshipStatus"})
+    }
 
   
 
   render() {
-    const handleWelcomeClick = (event) => {
-        this.setState({...this.state, stage: "relationshipStatus"})
-    }
+    
 
     if (this.state.stage === "welcome") {
-        return (
-            <div className="container" onScroll={this.handleScroll} onClick={handleWelcomeClick}>             
-                <Bounce top>
-                    <h1>Welcome</h1>
-                </Bounce> 
-            </div>
-        )
+        return (  <Welcome handleWelcomeClick={this.handleWelcomeClick} />)
     } else if (this.state.stage === "relationshipStatus") {
         return (
             <div className="container">
@@ -50,15 +33,6 @@ class Container extends Component {
         )
     }
     
-      return(
-            
-            <div className="container">
-             
-             <DateForm onFormSubmit={this.handleSubmit} data={this.state} />   
-           
-             </div>
-         
-      );
   };
 
 }
