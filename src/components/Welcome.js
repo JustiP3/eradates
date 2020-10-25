@@ -5,7 +5,7 @@ const Welcome = (props) => {
     return(
         <div className="container" onClick={props.handleWelcomeClick}>             
             <Bounce top>
-                <h1>Welcome</h1>
+                <h1>Welcome </h1>
             </Bounce> 
         </div>
 
