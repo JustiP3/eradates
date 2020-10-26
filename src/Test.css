@@ -6,7 +6,7 @@ html, body, #root, .App {
 }
 .container {
   height: 100%;
-  width: 100%;
+  width: 50%;
   background-color: blue;
   text-align: center;
   padding: 100px;
@@ -23,4 +23,9 @@ h1.react-reveal {
 .container .Zoom h1 {
   font-size: 900%;
   margin-top: 100px;
+}
+
+.heartlogo {
+  width: 100px;
+  height: 100px; 
 }

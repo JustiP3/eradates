@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../Test.css'
+import heartlogo from '../assets/heartlogo.png'
 
 
 
@@ -13,6 +14,7 @@ class Results extends Component {
 
     return(
         <div className="container">
+            <img src={heartlogo} alt="heart logo" className="heartlogo" />
             <h1 onClick={this.fetchResults}>Your Choices:</h1>
             <p>Relationship Status: {this.props.state.relationshipStatus}</p>
             <p>Date Type: {this.props.state.dateType}</p>
