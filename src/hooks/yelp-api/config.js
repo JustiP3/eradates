@@ -1,0 +1,1 @@
+export const YELP_BASE_URL = 'https://api.yelp.com/v3'
