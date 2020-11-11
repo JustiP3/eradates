@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import * as api from './api'
 
 export function useBusinessSearch(term,location) {
-    const {businesses, setBusinesses} = useState([]);
+    const [businesses, setBusinesses] = useState([]);
     const [amountResults, setAmountResults] = useState();
     const [searchParams, setSearchParams] = useState({term, location})
 
@@ -19,6 +19,6 @@ export function useBusinessSearch(term,location) {
             }            
         }
         fetchData();
-    }, [searchParams]) // dependency list - hook re-executes on change
+    }, [searchParams, setBusinesses]) // dependency list - hook re-executes on change
     return [businesses, amountResults, searchParams, setSearchParams]
 }

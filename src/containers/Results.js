@@ -1,30 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import '../Test.css'
 import heartlogo from '../assets/heartlogo.png'
+import {useBusinessSearch} from '../hooks/yelp-api/useBusinessSearch'
 
+export default function Results(props) {
+  const params = new URLSearchParams(window.location.search)
+  const term = params.get('find_desc')
+  const locationParam = params.get('find_loc')
+  const [businesses, amountResults, searchParams, setSearchParams] = useBusinessSearch(term, locationParam);   
 
-
-class Results extends Component {
-
-  fetchResults = () => {
-    console.log("this will fetch results from yelp. api key is process.env.REACT_APP_YELP_KEY")
-  }
-
-  render() {    
-
-    return(
-        <div className="container">
-            <img src={heartlogo} alt="heart logo" className="heartlogo" />
-            <h1 onClick={this.fetchResults}>Your Choices:</h1>
-            <p>Relationship Status: {this.props.state.relationshipStatus}</p>
-            <p>Date Type: {this.props.state.dateType}</p>
-            <p>Era: {this.props.state.era}</p>
-            <p>Budget: {this.props.state.budget}</p>
-        </div>
-    )
-    
-  };
-
+  return(
+      <div className="container">
+          <img src={heartlogo} alt="heart logo" className="heartlogo" />
+          <h1>Your Choices:</h1>
+          <p>Relationship Status: {props.state.relationshipStatus}</p>
+          <p>Date Type: {props.state.dateType}</p>
+          <p>Era: {props.state.era}</p>
+          <p>Budget: {props.state.budget}</p>
+      </div>
+  )
 }
 
-export default Results 
