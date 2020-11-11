@@ -18,6 +18,7 @@ export function useBusinessSearch(term,location) {
                 console.error(e);
             }            
         }
+        fetchData();
     }, [searchParams]) // dependency list - hook re-executes on change
     return [businesses, amountResults, searchParams, setSearchParams]
 }
