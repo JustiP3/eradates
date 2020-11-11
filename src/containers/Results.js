@@ -2,11 +2,12 @@ import React from 'react'
 import '../Test.css'
 import heartlogo from '../assets/heartlogo.png'
 import {useBusinessSearch} from '../hooks/yelp-api/useBusinessSearch'
+import YelpTest from '../components/YelpTest'
 
 export default function Results(props) {
   const params = new URLSearchParams(window.location.search)
-  const term = params.get('find_desc')
-  const locationParam = params.get('find_loc')
+  const term = "Dinner"
+  const locationParam = "Oakland"
   const [businesses, amountResults, searchParams, setSearchParams] = useBusinessSearch(term, locationParam);   
 
   return(
@@ -17,6 +18,7 @@ export default function Results(props) {
           <p>Date Type: {props.state.dateType}</p>
           <p>Era: {props.state.era}</p>
           <p>Budget: {props.state.budget}</p>
+          <YelpTest term={term} location={locationParam} businesses={businesses}/>
       </div>
   )
 }
