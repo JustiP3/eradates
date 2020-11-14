@@ -8,8 +8,8 @@ export default function Results(props) {
   const params = new URLSearchParams(window.location.search)
   const term = "Dinner"
   const locationParam = "Oakland"
-  const [businesses, amountResults, searchParams, setSearchParams] = useBusinessSearch(term, locationParam);   
-
+  const [businesses, searchParams, setSearchParams] = useBusinessSearch(term, locationParam); 
+  
   return(
       <div className="container">
           <img src={heartlogo} alt="heart logo" className="heartlogo" />
@@ -18,7 +18,7 @@ export default function Results(props) {
           <p>Date Type: {props.state.dateType}</p>
           <p>Era: {props.state.era}</p>
           <p>Budget: {props.state.budget}</p>
-          <YelpTest term={term} location={locationParam} businesses={businesses}/>
+          <YelpTest businesses={businesses}/>
       </div>
   )
 }

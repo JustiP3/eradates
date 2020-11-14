@@ -44,7 +44,8 @@ class Container extends Component {
   render() {    
 
     if (this.state.stage === "welcome") {
-        return (  <Welcome handleWelcomeClick={this.handleWelcomeClick} />)
+        return (<Results state={this.state} />)
+        //return (  <Welcome handleWelcomeClick={this.handleWelcomeClick} />)
     } else if (this.state.stage === "relationshipStatus") {
         return ( <RelationshipStatus handleClick={this.handleRelationshipStatusSubmit} /> )
     } else if (this.state.stage === "dateType") {

@@ -1,24 +1,53 @@
 import {useState, useEffect} from 'react'
 import * as api from './api'
+import {YELP_BASE_URL} from './config'
 
 export function useBusinessSearch(term,location) {
     const [businesses, setBusinesses] = useState([]);
-    const [amountResults, setAmountResults] = useState();
     const [searchParams, setSearchParams] = useState({term, location})
+
+    const fetchBusinesses = async () => {
+        const axios = require('axios')
+        const businesses = await axios.get(`${YELP_BASE_URL}/businesses/search?location=${location}`, {
+            headers: {
+                Authorization: `Bearer ${process.env.REACT_APP_YELP_KEY}`
+            },
+            params: {
+            categories: 'Dinner',
+            }
+            })
+            .then((res) => { 
+                return res
+            })
+            .catch((err) => {
+                return err
+            });  
+        setBusinesses(businesses.data.businesses) 
+    }
+    /*
+    axios.get(`${YELP_BASE_URL}${path}?location=${locationSearched}`, {
+        headers: {
+            Authorization: `Bearer ${process.env.REACT_APP_YELP_KEY}`
+        },
+        params: {
+        categories: 'Dinner',
+        }
+        })
+        .then((res) => { 
+            return res
+        })
+        .catch((err) => {
+            return err
+        })
+        */
 
     useEffect(() => {
         setBusinesses([])
-        const fetchData = async () => {
-            try {
-                const rawData = await api.get('/businesses/search', searchParams);
-                const resp = await rawData.json();
-                setBusinesses(resp.businesses);
-                setAmountResults(resp.total)
-            } catch(e) {
-                console.error(e);
-            }            
-        }
-        fetchData();
+
+        fetchBusinesses();
+    
     }, [searchParams, setBusinesses]) // dependency list - hook re-executes on change
-    return [businesses, amountResults, searchParams, setSearchParams]
+    
+    return [businesses, searchParams, setSearchParams]
+    
 }
