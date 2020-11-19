@@ -29,3 +29,12 @@ html, body, #root, .App {
     width: 100px;
     height: 100px; 
   }
+
+  .card {
+    width: 50%;
+    margin: auto;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none; 
+  }

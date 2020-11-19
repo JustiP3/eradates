@@ -1,6 +1,7 @@
 import Zoom from 'react-reveal/Zoom';
 import React from 'react'
 
+
 const RelationshipStatus = (props) => {
     return(
         <div className="container">

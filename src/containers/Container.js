@@ -5,7 +5,7 @@ import DateType from '../components/introduction/DateType'
 import Era from '../components/introduction/Era'
 import Budget from '../components/introduction/Budget'
 import Results from '../containers/Results'
-
+import '../components/introduction/introduction.css'
 
 
 class Container extends Component {
