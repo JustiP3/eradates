@@ -13,9 +13,7 @@ const RelationshipStatus = (props) => {
                 <div className="card" onClick={props.handleClick}>Just getting back in the Game</div>         
             </Zoom>
         </div>
-
     )
-
 }
 
 export default RelationshipStatus
