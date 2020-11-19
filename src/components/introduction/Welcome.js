@@ -1,6 +1,6 @@
 import Bounce from 'react-reveal/Bounce';
 import React from 'react'
-import heartlogo from '.../assets/heartlogo.png'
+import heartlogo from '../../assets/heartlogo.png'
 import './introduction.css'
 
 const Welcome = (props) => {
