@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import '../Test.css'
-import Welcome from '../components/Welcome'
-import RelationshipStatus from '../components/RelationshipStatus'
-import DateType from '../components/DateType'
-import Era from '../components/Era'
-import Budget from '../components/Budget'
+import Welcome from '../components/introduction/Welcome'
+import RelationshipStatus from '../components/introduction/RelationshipStatus'
+import DateType from '../components/introduction/DateType'
+import Era from '../components/introduction/Era'
+import Budget from '../components/introduction/Budget'
 import Results from '../containers/Results'
 
 
@@ -44,8 +43,7 @@ class Container extends Component {
   render() {    
 
     if (this.state.stage === "welcome") {
-        return (<Results state={this.state} />)
-        //return (  <Welcome handleWelcomeClick={this.handleWelcomeClick} />)
+        return (  <Welcome handleWelcomeClick={this.handleWelcomeClick} />)
     } else if (this.state.stage === "relationshipStatus") {
         return ( <RelationshipStatus handleClick={this.handleRelationshipStatusSubmit} /> )
     } else if (this.state.stage === "dateType") {
