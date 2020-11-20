@@ -7,10 +7,8 @@ const RelationshipStatus = (props) => {
         <div className="container">
             <Zoom top>
                 <h1>How long have you been dating?</h1>
-                <div className="card" onClick={props.handleClick}>First Date</div>     
-                <div className="card" onClick={props.handleClick}>Dating for a While</div>  
-                <div className="card" onClick={props.handleClick}>Basically (or actually) Married</div>  
-                <div className="card" onClick={props.handleClick}>Just getting back in the Game</div>         
+                <div className="card" onClick={props.handleClick}>Not Long</div>     
+                <div className="card" onClick={props.handleClick}>A While</div>        
             </Zoom>
         </div>
     )

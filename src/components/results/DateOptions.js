@@ -51,7 +51,7 @@ export function dateOptions(object) {
             break;
     }
 
-    if (object.state.relationshipStatus === "First Date"){
+    if (object.state.relationshipStatus === "Not Long"){
         return optionsArray[0]
     } else {
         return optionsArray.flat()
