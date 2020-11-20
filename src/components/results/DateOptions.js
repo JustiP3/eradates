@@ -1,36 +1,60 @@
 export function dateOptions(object) {
     /*
     After Introduction Questions all responses are passed into this function as an object.  
+
+    Returns an array containing activites
+    array1 = low risk activities okay for a first date
+    array2 = high risk activities for not first date
+
+    "We wouldn't reccomend to go on a date to a cabin in the woods with somebody you don't know." 
+
+      state = {
+        relationshipStatus: "", // if first date only public places (no hikes)
+        dateType: "", // remove this?
+        budget: 0, // remove this and add option to sort results by price using yelp's $$ scale
+        era: "" ** most important 
+      }
     */
+
+    let optionsArray = []
 
     switch(object.state.era) {
         case "1920's":
-            return ["dance hall", "speakeasy", "bar", "roller skating", "movie theatres", "sports", "jazz", "flapper"]
+            optionsArray = [["dance hall", "roller skating" , "movie theatres", "sports", "jazz"],["speakeasy", "bar", "flapper"]]
+            break;
         case "1930's":
-            return ["movies", "food", "ice cream", "driving", "dancing"]
+            optionsArray =  [["movies", "food", "ice cream", "dancing", "swing dancing"], ["driving"]]
+            break;
         case "1940's":
-            return ["World War 2", "patriotism", "voulenteer", "soup kitchen", "carnival", "fortune teller"]
+            optionsArray =  [["World War 2", "patriotism", "voulenteer", "soup kitchen", "carnival", "fortune teller", "chocolate chip cookie"],[]]
+            break;
         case "1950's":
-            return ["asdf"]
+            optionsArray =  [["Local Ice Cream Shop", "Drive-In Movies", "Roller Skating", "Bowling"], ["Tiki Bar", "Elvis"]]
+            break;
         case "1960's":
-            return ["asdf"]
+            optionsArray =  [["Drive-In Movies", "County Fair", "Roller Skating", "Swing Dancing", "Watch the sunset", "Local Ice Cream Shop", "Bowling", "Festival", "Outdoor Concert"],[]]
+            break;
         case "1970's":
-             return ["asdf"]    
+            optionsArray =  [["Roller Skating", "Picnic", "Mall", "Record Store", "Disco", "Lava Lamp"],[]]  
+            break;  
         case "1980's":
-            return ["asdf"]
+            optionsArray =  [["Classic Rock",  "Roller Skating"], ["80's bar"]]
+            break;
         case "1990's":
-            return ["asdf"]
+            optionsArray =  [["Roller Skate", "Grunge", "Picnic", "Movie Theatre"], ["Nintendo 64"] ]
+            break;
         case "2000's":
-            return ["asdf"]
+            optionsArray =  [["Boy Band Concert",  "Sidewalk Chalk", "Bowling", "Thrift Shopping", "Aquarium", "Zoo", "Sunset"], ["Hiking"]]
+            break;
         default:
-            return ["asdf"]
+            optionsArray =  ["Error matching Era in dateOptions()"]
+            break;
+    }
+
+    if (object.state.relationshipStatus === "First Date"){
+        return optionsArray[0]
+    } else {
+        return optionsArray.flat()
     }
 }
 
-/*
-1920 dance halls, speakeasies and bars, skating rings, movie theatres, sports courts 
-Also Jazz and flapper culture 
-1930 Great Depression - movies, getting something to eat, going for ice cream, driving around, spending time with friends, going to dances, and even "necking." ... Not all dates involved movies, especially if you didn't have the dime.
-1940 - WWII activities - patriotism, volunteer together - soup kitchen. carnival, cotton candy, movies, party, fortune teller 
-1950
-*/
