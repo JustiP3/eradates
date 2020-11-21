@@ -7,11 +7,11 @@ import YelpResult from '../components/results/YelpResult'
 
 export default function Results(props) {
   const [dateSelected, setDateSelected] = useState("initialize");
-  const select = () => setDateSelected("something")
-  const back = () => setDateSelected("initialize")
+  const select = (value) => setDateSelected(value)
+  //const back = () => setDateSelected("initialize")
 
   const optionsArray = dateOptions(props)
-  const dateIdeaList = optionsArray.map((x) => <DateIdea key={x} name={x} select={select}/>)
+  const dateIdeaList = optionsArray.map((x) =><DateIdea key={x} name={x} select={select}/>)
   
   const term = "Theatre"
   const locationParam = "Oakland"
@@ -19,12 +19,6 @@ export default function Results(props) {
   const yelpResultList = businesses.map((x) => <YelpResult key={x.id} business={x} />)
   
   /*
-  Goal:
-  On Results page Load, Display Date Options and 
-  Hide Yelp Results Until a Date Idea Selection is made 
-
-  When a selection is made, display yelp results
-  Add a back button to display add date ideas
   
   *** Need to Look up how to update use setSearchParams *** 
   When a date selection is made, update Yelp Search 
@@ -41,7 +35,8 @@ export default function Results(props) {
 
   </div>
     )
-  } else {
+  } else { 
+    // <button  className="button" onClick={back}>Go Back</button><br />
   return(
       <div className="container">
         
@@ -49,8 +44,9 @@ export default function Results(props) {
         
           <div className="date-idea-div">
             <h1>Results</h1>
-            <button  className="button" onClick={back}>Go Back</button><br />
-            <span>Search Params - {searchParams.term}, {searchParams.location}</span>
+            
+            <span>Search Params - {searchParams.term}, {searchParams.location}. Selection: {dateSelected}</span>
+
             {yelpResultList}
           </div>
 
@@ -59,3 +55,14 @@ export default function Results(props) {
   ) }
 }
 
+
+/*
+index.js:1 Warning: Cannot update a component (`Results`) while rendering a different component (`DateIdea`). To locate the bad setState() call inside `DateIdea`, follow the stack trace as described in https://fb.me/setstate-in-render
+    in DateIdea (at Results.js:14)
+    in div (at Results.js:31)
+    in div (at Results.js:28)
+    in Results (at Container.js:58)
+    in Container (at App.js:7)
+    in App (at src/index.js:8)
+    in StrictMode (at src/index.js:7)
+    */
