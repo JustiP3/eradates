@@ -21,8 +21,14 @@ export default function Results(props) {
       <div className="container">
         
           <img src={heartlogo} alt="heart logo" className="heartlogo" />
-          {dateIdeaList}
-          {yelpResultList}
+          <div className="date-idea-div">
+            <h1>Date Ideas</h1>
+            {dateIdeaList}
+          </div>
+          <div className="date-idea-div">
+            <h1>Results</h1>
+            {yelpResultList}
+          </div>
 
           
       </div>

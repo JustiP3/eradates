@@ -5,9 +5,9 @@ export default function YelpResult(props) {
       
 
     if (!props.business || props.business.length === 0) {
-        return(<div>No Businesses Found</div>)
+        return(<div className="yelp-results-card">No Businesses Found</div>)
     } else {
-        return(<div>{props.business.name}</div>) 
+        return(<div className="yelp-results-card">{props.business.name}</div>) 
     }
     
 }
