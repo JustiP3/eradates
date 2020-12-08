@@ -13,9 +13,8 @@ export default function Results(props) {
   const optionsArray = dateOptions(props)
   const dateIdeaList = optionsArray.map((x) =><DateIdea key={x} name={x} select={select} />)
   
-  const term = "Theatre"
   const locationParam = "Oakland"
-  const [businesses, searchParams, setSearchParams] = useBusinessSearch(term, locationParam);  
+  const [businesses, searchParams, setSearchParams] = useBusinessSearch(dateSelected, locationParam);  
   const yelpResultList = businesses.map((x) => <YelpResult key={x.id} business={x} />)
   
   /*
@@ -36,7 +35,6 @@ export default function Results(props) {
   </div>
     )
   } else { 
-    // <button  className="button" onClick={back}>Go Back</button><br />
   return(
       <div className="container">
         
@@ -45,7 +43,7 @@ export default function Results(props) {
           <div className="date-idea-div">
             <h1>Results</h1>
             
-            <span>Search Params - {searchParams.term}, {searchParams.location}. Selection: {dateSelected} <button onClick={()=>back()}>Back</button></span>
+            <span>Search Params - {searchParams.term}, {searchParams.location}. Selection: {dateSelected} <button className="button" onClick={()=>back()}>Back</button></span>
 
             {yelpResultList}
           </div>
