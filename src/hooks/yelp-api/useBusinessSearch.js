@@ -10,13 +10,13 @@ export function useBusinessSearch(term, location) {
     useEffect(() => {
         const fetchBusinesses = async () => {
             const axios = require('axios')
-            let businesses = {data: {businesses: []}}
-            businesses = await axios.get(`${YELP_BASE_URL}/businesses/search?location=${location}`, {
+            let b = {data: {businesses: []}}
+            b = await axios.get(`${YELP_BASE_URL}/businesses/search?location=${location}`, {
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_YELP_KEY}`
                 },
                 params: {
-                categories: term,
+                term: term,
                 }
                 })
                 .then((res) => { 
@@ -25,11 +25,11 @@ export function useBusinessSearch(term, location) {
                 .catch((err) => {
                     return err
                 });  
-            if (!!businesses && !!businesses.data && !!businesses.data.businesses) {
-                setBusinesses(businesses.data.businesses)
+            if (!!b && !!b.data && !!b.data.businesses) {
+                setBusinesses(b.data.businesses)
             }
         }
-        setBusinesses([])
+        //setBusinesses([])
 
         fetchBusinesses();
     
