@@ -8,7 +8,7 @@ import YelpResult from '../components/results/YelpResult'
 export default function Results(props) {
   const [dateSelected, setDateSelected] = useState("initialize");
   const select = (value) => setDateSelected(value)
-  //const back = () => setDateSelected("initialize")
+  const back = () => setDateSelected("initialize")
 
   const optionsArray = dateOptions(props)
   const dateIdeaList = optionsArray.map((x) =><DateIdea key={x} name={x} select={select} />)
@@ -45,7 +45,7 @@ export default function Results(props) {
           <div className="date-idea-div">
             <h1>Results</h1>
             
-            <span>Search Params - {searchParams.term}, {searchParams.location}. Selection: {dateSelected}</span>
+            <span>Search Params - {searchParams.term}, {searchParams.location}. Selection: {dateSelected} <button onClick={()=>back()}>Back</button></span>
 
             {yelpResultList}
           </div>
