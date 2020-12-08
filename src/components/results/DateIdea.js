@@ -1,5 +1,12 @@
 import React from 'react'
 
-const DateIdea = (props) => {return(<div onClick={props.select(props.name)} className="date-options-card">{props.name}</div>)}
+const DateIdea = (props) => {
+    const dateIdeaName = props.name
+    return(
+    <div className="date-options-card" onClick={() => props.select(dateIdeaName)}>
+        {dateIdeaName}
+     </div>
+     )
+    }
 
 export default DateIdea

@@ -11,7 +11,7 @@ export default function Results(props) {
   //const back = () => setDateSelected("initialize")
 
   const optionsArray = dateOptions(props)
-  const dateIdeaList = optionsArray.map((x) =><DateIdea key={x} name={x} select={select}/>)
+  const dateIdeaList = optionsArray.map((x) =><DateIdea key={x} name={x} select={select} />)
   
   const term = "Theatre"
   const locationParam = "Oakland"
@@ -55,14 +55,3 @@ export default function Results(props) {
   ) }
 }
 
-
-/*
-index.js:1 Warning: Cannot update a component (`Results`) while rendering a different component (`DateIdea`). To locate the bad setState() call inside `DateIdea`, follow the stack trace as described in https://fb.me/setstate-in-render
-    in DateIdea (at Results.js:14)
-    in div (at Results.js:31)
-    in div (at Results.js:28)
-    in Results (at Container.js:58)
-    in Container (at App.js:7)
-    in App (at src/index.js:8)
-    in StrictMode (at src/index.js:7)
-    */
