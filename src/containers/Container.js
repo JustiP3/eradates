@@ -3,9 +3,10 @@ import Welcome from '../components/introduction/Welcome'
 import RelationshipStatus from '../components/introduction/RelationshipStatus'
 //import DateType from '../components/introduction/DateType'
 import Era from '../components/introduction/Era'
-//import Budget from '../components/introduction/Budget'
 import Results from '../containers/Results'
 import '../components/introduction/introduction.css'
+import { geolocated } from "react-geolocated";
+import Location from '../components/results/Location'
 
 
 class Container extends Component {
@@ -15,7 +16,27 @@ class Container extends Component {
       relationshipStatus: "",
       dateType: "",
       budget: 0, 
-      era: ""
+      era: "",
+      lattitude: 0,
+      longitude: 0
+  }
+
+  componentDidMount() {
+    
+    if (!this.props.isGeolocationAvailable) {
+        console.log("GeoLocation is not enabled")
+    } else {
+        if (!!this.props.coords) {
+            this.setState({...this.state, 
+                lattitude: this.props.coords.latitude, 
+                longitude: this.props.coords.longitude
+            })
+        } else {
+            console.log("GeoLocation is enabled but we don't have coords :(")
+        }
+
+    }
+  
   }
 
     handleWelcomeClick = (event) => {
@@ -25,27 +46,21 @@ class Container extends Component {
     handleRelationshipStatusSubmit = (event) => { 
         this.setState({...this.state, stage: "era", relationshipStatus: event.target.innerText})
     }
-    /*
-    handleDateTypeSubmit = (event) => {
-        this.setState({...this.state, stage: "era", dateType: event.target.innerText})
-    }
-    */
+
 
     handleEraSubmit = (event) => {
         this.setState({...this.state, stage: "results", era: event.target.innerText})
     }
 
-    /*
-    handleBudgetSubmit = (event) => {
-        this.setState({...this.state, stage: "results", budget: event.target.innerText})
-    }
-    */
-  
 
   render() {    
 
     if (this.state.stage === "welcome") {
-        return (  <Welcome handleWelcomeClick={this.handleWelcomeClick} />)
+        return (  <div>
+            <Welcome handleWelcomeClick={this.handleWelcomeClick} />
+            <Location />
+            Location set from componentdidmount in container class component: {this.state.latitude}, {this.state.longitude}
+            </div>)
     } else if (this.state.stage === "relationshipStatus") {
         return ( <RelationshipStatus handleClick={this.handleRelationshipStatusSubmit} /> )
     } /*else if (this.state.stage === "dateType") {
@@ -62,4 +77,9 @@ class Container extends Component {
 
 }
 
-export default Container 
+export default geolocated({
+    positionOptions: {
+        enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+})(Container);
