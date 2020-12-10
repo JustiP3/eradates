@@ -13,7 +13,7 @@ export default function Results(props) {
   const optionsArray = dateOptions(props)
   const dateIdeaList = optionsArray.map((x) =><DateIdea key={x} name={x} select={select} />)
   
-  const locationParam = "Oakland"
+  const locationParam = [props.latitude, props.longitude]
   const [businesses, searchParams, setSearchParams] = useBusinessSearch(dateSelected, locationParam);  
   const yelpResultList = businesses.map((x) => <YelpResult key={x.id} business={x} />)
   
@@ -30,6 +30,7 @@ export default function Results(props) {
       <div className="date-idea-div">
         <h1>Date Ideas</h1>        
         {dateIdeaList}
+        Location: {props.latitude}, {props.longitude}
       </div>
 
   </div>
