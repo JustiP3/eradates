@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import Welcome from '../components/introduction/Welcome'
 import RelationshipStatus from '../components/introduction/RelationshipStatus'
-//import DateType from '../components/introduction/DateType'
 import Era from '../components/introduction/Era'
 import Results from '../containers/Results'
 import '../components/introduction/introduction.css'
 import { geolocated } from "react-geolocated";
-import Location from '../components/results/Location'
 
 
 class Container extends Component {
@@ -17,27 +15,8 @@ class Container extends Component {
       dateType: "",
       budget: 0, 
       era: "",
-      lattitude: 0,
-      longitude: 0
   }
 
-  componentDidMount() {
-    
-    if (!this.props.isGeolocationAvailable) {
-        console.log("GeoLocation is not enabled")
-    } else {
-        if (!!this.props.coords) {
-            this.setState({...this.state, 
-                lattitude: this.props.coords.latitude, 
-                longitude: this.props.coords.longitude
-            })
-        } else {
-            console.log("GeoLocation is enabled but we don't have coords :(")
-        }
-
-    }
-  
-  }
 
     handleWelcomeClick = (event) => {
         this.setState({...this.state, stage: "relationshipStatus"})
@@ -53,14 +32,26 @@ class Container extends Component {
     }
 
 
-  render() {    
+  render() {   
+      let latt 
+      let long 
+      
+    if (!this.props.isGeolocationAvailable) {
+        console.log("GeoLocation is not enabled")
+    } else {
+        if (!!this.props.coords) {
+            
+                latt = this.props.coords.latitude
+                long = this.props.coords.longitude
+           
+        } else {
+            console.log("GeoLocation is enabled but we don't have coords :(")
+        }
+
+    }
 
     if (this.state.stage === "welcome") {
-        return (  <div>
-            <Welcome handleWelcomeClick={this.handleWelcomeClick} />
-            <Location />
-            Location set from componentdidmount in container class component: {this.state.latitude}, {this.state.longitude}
-            </div>)
+        return ( <Welcome handleWelcomeClick={this.handleWelcomeClick} />)
     } else if (this.state.stage === "relationshipStatus") {
         return ( <RelationshipStatus handleClick={this.handleRelationshipStatusSubmit} /> )
     } /*else if (this.state.stage === "dateType") {
@@ -70,7 +61,7 @@ class Container extends Component {
     }/* else if (this.state.stage === "budget") {
         return ( <Budget handleClick={this.handleBudgetSubmit} /> )
     } */ else if (this.state.stage === "results") {
-        return ( <Results state={this.state} /> )
+        return ( <Results state={this.state} latitude={latt} longitude={long} /> )
     }
     
   };
