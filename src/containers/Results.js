@@ -44,7 +44,7 @@ export default function Results(props) {
           <div className="date-idea-div">
             <h1>Results</h1>
             
-            <span>Search Params - {searchParams.term}, {searchParams.location}. Selection: {dateSelected} <button className="button" onClick={()=>back()}>Back</button></span>
+            <span><button className="button" onClick={()=>back()}>Back</button></span>
 
             {yelpResultList}
           </div>
