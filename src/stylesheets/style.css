@@ -1,0 +1,76 @@
+
+
+html, body, #root, .App {
+    height: 100%;
+    background-color: darksalmon;
+  }
+  .container {
+    height: 100%;
+    width: 50%;
+    background-color: blue;
+    text-align: center;
+    padding: 100px;
+  }
+  
+  .center {
+    margin: auto; 
+  
+  }
+  
+  h1.react-reveal {
+    margin: 100px;
+  }
+  .container .Zoom h1 {
+    font-size: 900%;
+    margin-top: 100px;
+  }
+  
+  .heartlogo {
+    width: 100px;
+    height: 100px; 
+  }
+
+  .card {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: salmon;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none; 
+  }
+
+  .date-options-card {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    color: white;
+    background-color: salmon;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none; 
+  }
+
+  .yelp-results-card {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    color: black;
+    background-color: cyan;
+  }
+
+  .date-idea-div {
+    padding: 50 px;
+    margin-top: 100px;
+  }
