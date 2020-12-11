@@ -15,6 +15,8 @@ export default function Results(props) {
   
   const locationParam = [props.latitude, props.longitude]
   const [businesses, searchParams, setSearchParams] = useBusinessSearch(dateSelected, locationParam);  
+
+  // onclick - open link to "business" in new tab?
   const yelpResultList = businesses.map((x) => <YelpResult key={x.id} business={x} />)
   
   /*
@@ -36,7 +38,24 @@ export default function Results(props) {
   </div>
     )
   } else { 
-  return(
+    let loading = true 
+    let doneLoading = () => loading = false 
+
+    setTimeout(doneLoading, 5000)
+
+    if (!!loading) {
+      return(
+        <div className="container">
+          
+            <img src={heartlogo} alt="heart logo" className="heartlogo" />
+          
+            <h1>...</h1>
+          
+            
+        </div>
+    )
+    } else {
+       return(
       <div className="container">
         
           <img src={heartlogo} alt="heart logo" className="heartlogo" />
@@ -46,10 +65,13 @@ export default function Results(props) {
             
             <span><button className="button" onClick={()=>back()}>Back</button></span>
 
+            {/* onclick - open in new tab*/ }
             {yelpResultList}
           </div>
 
           
       </div>
   ) }
+    }
+ 
 }
