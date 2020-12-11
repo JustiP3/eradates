@@ -47,11 +47,13 @@ export default function Results(props) {
       return(
         <div className="container">
           
-            <img src={heartlogo} alt="heart logo" className="heartlogo" />
+            <img src={heartlogo} alt="heart logo" className="heartlogo" /><br />
+            <div className="card">
+            <span><button className="button" onClick={()=>back()}>Back</button></span>
           
-            <h1>...</h1>
+            <h1>...Loading...</h1>
           
-            
+            </div>
         </div>
     )
     } else {

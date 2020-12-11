@@ -3,7 +3,7 @@ import Welcome from '../components/introduction/Welcome'
 import RelationshipStatus from '../components/introduction/RelationshipStatus'
 import Era from '../components/introduction/Era'
 import Results from '../containers/Results'
-import '../components/introduction/introduction.css'
+import '../stylesheets/style.css'
 import { geolocated } from "react-geolocated";
 
 
