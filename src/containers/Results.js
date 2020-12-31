@@ -43,7 +43,7 @@ export default function Results(props) {
 
     setTimeout(doneLoading, 5000)
 
-    if (!!loading) {
+    if (!loading) {
       return(
         <div className="container">
           

@@ -11,12 +11,10 @@ export function useBusinessSearch(term, location) {
         const fetchBusinesses = async () => {
             const axios = require('axios')
             let b = {data: {businesses: []}}
-            b = await axios.get(`${YELP_BASE_URL}/businesses/search?latitude=${latitude}&longitude=${longitude}`, {
+            console.log(`latitude=${latitude}&longitude=${longitude}&term=${term}`)
+            b = await axios.get(`${YELP_BASE_URL}/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${term}`, {
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_YELP_KEY}`
-                },
-                params: {
-                term: term,
                 }
                 })
                 .then((res) => { 
@@ -33,7 +31,7 @@ export function useBusinessSearch(term, location) {
 
         fetchBusinesses();
     
-    }, [searchParams, setBusinesses, location, term]) // dependency list - hook re-executes on change
+    }, [searchParams, setBusinesses, location, term, latitude, longitude]) // dependency list - hook re-executes on change
     
     return [businesses, searchParams, setSearchParams]
     
