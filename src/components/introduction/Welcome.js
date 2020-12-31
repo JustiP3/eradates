@@ -5,7 +5,7 @@ import heartlogo from '../../assets/heartlogo.png'
 const Welcome = (props) => {
 
     return(
-        <div className="container" onClick={props.handleWelcomeClick}>  
+        <div className="welcome-container" onClick={props.handleWelcomeClick}>  
             <img src={heartlogo} alt="heart logo" className="heartlogo" />
             <Bounce top>
                 <h1>Welcome</h1>

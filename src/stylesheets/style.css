@@ -5,11 +5,21 @@ html, body, #root, .App {
     background-color: darksalmon;
   }
   .container {
+    height: auto;
+    width: 50%;
+    background-color: blue;
+    text-align: center;
+    padding: 100px;
+    margin: auto;
+  }
+
+  .welcome-container {
     height: 100%;
     width: 50%;
     background-color: blue;
     text-align: center;
     padding: 100px;
+    margin: auto;
   }
   
   .center {
