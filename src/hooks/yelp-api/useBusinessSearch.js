@@ -11,7 +11,6 @@ export function useBusinessSearch(term, location) {
         const fetchBusinesses = async () => {
             const axios = require('axios')
             let b = {data: {businesses: []}}
-            console.log(`latitude=${latitude}&longitude=${longitude}&term=${term}`)
             b = await axios.get(`${YELP_BASE_URL}/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${term}`, {
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_YELP_KEY}`
@@ -27,11 +26,10 @@ export function useBusinessSearch(term, location) {
                 setBusinesses(b.data.businesses)
             }
         }
-        //setBusinesses([])
 
         fetchBusinesses();
     
-    }, [searchParams, setBusinesses, location, term, latitude, longitude]) // dependency list - hook re-executes on change
+    }, [searchParams, setBusinesses]) // dependency list - hook re-executes on change
     
     return [businesses, searchParams, setSearchParams]
     
