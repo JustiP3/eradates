@@ -14,7 +14,7 @@ export default function Results(props) {
   const back = () => setDateSelected("initialize")
 
   const [loading, setLoading] = useState(true)
-  const nowLoading = () => setTimeout(notLoading, 5000) 
+  const nowLoading = () => setTimeout(notLoading, 2000) 
   const notLoading = () => setLoading(false) 
 
   const optionsArray = dateOptions(props) // props here represents user choices from introduction
