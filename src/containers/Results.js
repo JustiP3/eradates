@@ -7,8 +7,14 @@ import YelpResult from '../components/results/YelpResult'
 
 export default function Results(props) {
   const [dateSelected, setDateSelected] = useState("initialize");
-  const select = (value) => setDateSelected(value)
+  const select = (value) => {
+    setDateSelected(value)
+    nowLoading()
+  }
   const back = () => setDateSelected("initialize")
+
+  const [loading, setLoading] = useState(true)
+  const nowLoading = () => setTimeout(setLoading(false), 5000)  
 
   const optionsArray = dateOptions(props)
   const dateIdeaList = optionsArray.map((x) =><DateIdea key={x} name={x} select={select} />)
@@ -37,13 +43,9 @@ export default function Results(props) {
 
   </div>
     )
-  } else { 
-    let loading = true 
-    let doneLoading = () => loading = false 
+  } else {     
 
-    setTimeout(doneLoading, 5000)
-
-    if (!loading) {
+    if (loading === true) {
       return(
         <div className="container">
           
