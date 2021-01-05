@@ -1,4 +1,8 @@
 export function dateOptions(object) {
+
+    // ***NOT A COMPONENT***
+    // ***RETURNS A LIST OF OPTIONS***
+
     /*
     After Introduction Questions all responses are passed into this function as an object.  
 
