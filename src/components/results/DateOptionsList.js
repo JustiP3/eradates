@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 import DateIdea from './DateIdea'
 import heartlogo from '../../assets/heartlogo.png'
