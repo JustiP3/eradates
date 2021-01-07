@@ -4,9 +4,15 @@ import YelpResult from './YelpResult'
 import heartlogo from '../../assets/heartlogo.png'
 
 export default function YelpResultsList(props) {
-    const yelpResultList = props.businesses.map(x => <YelpResult business={x}/>)
+    const [loading, setLoading] = useState(true)
+    const nowLoading = () => setTimeout(notLoading, 1000) 
+    const notLoading = () => setLoading(false) 
 
-    if (!!props.loading) {
+    const yelpResultList = props.businesses.map(x => <YelpResult business={x} key={x}/>)
+
+    nowLoading()
+    
+    if (!!loading) {
         return(
           <div className="container">
             

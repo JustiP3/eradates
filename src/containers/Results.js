@@ -8,19 +8,16 @@ export default function Results(props) {
   const [dateSelected, setDateSelected] = useState("initialize");
   const select = (value) => {
     setDateSelected(value)
-    nowLoading()
+    setSearchParams({term: value, location: {latitude: props.latitude, longitude: props.longitude}}) // *** need to add parameters term,location
   }
   const back = () => setDateSelected("initialize")
-
-  const [loading, setLoading] = useState(true)
-  const nowLoading = () => setTimeout(notLoading, 2000) 
-  const notLoading = () => setLoading(false) 
+ 
 
   const optionsArray = dateOptions(props) // props here represents user choices from introduction
   
   
   const locationParam = [props.latitude, props.longitude]
-  const [businesses, searchParams, setSearchParams] = useBusinessSearch(dateSelected, locationParam);  
+  const [businesses, setSearchParams] = useBusinessSearch(dateSelected, locationParam);  
 
   // onclick - open link to "business" in new tab?
   
@@ -33,7 +30,7 @@ export default function Results(props) {
   if (dateSelected === "initialize"){
     return (<DateOptionsList options={optionsArray} select={select} /> )
   } else {  //dateSelected == user Selection    
-    return(<YelpResultsList businesses={businesses} loading={loading} back={back} />)
+    return(<YelpResultsList businesses={businesses} dateSelected={dateSelected} back={back} />)
     }
  
 }
