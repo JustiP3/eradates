@@ -12,24 +12,13 @@ export default function Results(props) {
   }
   const back = () => setDateSelected("initialize")
  
+  const optionsArray = dateOptions(props)
+  const [businesses, setSearchParams] = useBusinessSearch(dateSelected, {latitude: props.latitude, longitude: props.longitude}); 
+  
 
-  const optionsArray = dateOptions(props) // props here represents user choices from introduction
-  
-  
-  const locationParam = [props.latitude, props.longitude]
-  const [businesses, setSearchParams] = useBusinessSearch(dateSelected, locationParam);  
-
-  // onclick - open link to "business" in new tab?
-  
-  
-  /*
-  
-  *** Need to Look up how to update use setSearchParams *** 
-  When a date selection is made, update Yelp Search 
-  */
-  if (dateSelected === "initialize"){
+  if (dateSelected === "initialize"){    
     return (<DateOptionsList options={optionsArray} select={select} /> )
-  } else {  //dateSelected == user Selection    
+  } else {  //dateSelected == user Selection   
     return(<YelpResultsList businesses={businesses} dateSelected={dateSelected} back={back} />)
     }
  
