@@ -1,15 +1,17 @@
 import Bounce from 'react-reveal/Bounce';
 import React from 'react'
 import heartlogo from '../../assets/heartlogo.png'
+import TestComponent from './TestComponent.js'
 
 const Welcome = (props) => {
 
     return(
-        <div className="welcome-container" onClick={props.handleWelcomeClick}>  
+        <div className="welcome-container" >  
             <img src={heartlogo} alt="heart logo" className="heartlogo" />
             <Bounce top>
-                <h1>Welcome</h1>
+                <h1 onClick={props.handleWelcomeClick}>Welcome</h1>
             </Bounce> 
+            <TestComponent />
         </div>
 
     )
