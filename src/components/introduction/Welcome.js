@@ -1,7 +1,7 @@
 import Bounce from 'react-reveal/Bounce';
 import React, { useState } from 'react'
 import heartlogo from '../../assets/heartlogo.png'
-import TestComponent from './TestComponent.js'
+import Admin from '../../containers/Admin.js'
 
 const Welcome = (props) => {
     const [adminMenu, setAdminMenu] = useState(false)
@@ -14,7 +14,7 @@ const Welcome = (props) => {
             <div className="welcome-container" >  
                 <img src={heartlogo} alt="heart logo" className="heartlogo" />
                 <Bounce top>
-                    <TestComponent />
+                    <Admin />
                 </Bounce> 
                 <button onClick={handleBackClick}>Back</button>
             </div>    

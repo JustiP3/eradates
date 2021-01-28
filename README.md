@@ -7,8 +7,6 @@ TODO LIST
 
 - In YelpResult, add option to view details about a business (location, etc.)
 
-- Add form to testcomponent for text input and safe/unsafe
-
 - Add option to select a location that is not current location
 
 - Connect to an express server
