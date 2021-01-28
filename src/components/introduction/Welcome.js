@@ -10,15 +10,7 @@ const Welcome = (props) => {
     const handleBackClick = () => setAdminMenu(false)
 
     if (adminMenu) {
-        return(
-            <div className="welcome-container" >  
-                <img src={heartlogo} alt="heart logo" className="heartlogo" />
-                <Bounce top>
-                    <Admin />
-                </Bounce> 
-                <button onClick={handleBackClick}>Exit Admin Menu</button>
-            </div>    
-        )
+        return(<Admin exitAdminMenu={handleBackClick} />)
     } else {
         return(
             <div className="welcome-container" >  

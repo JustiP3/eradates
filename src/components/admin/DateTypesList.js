@@ -7,16 +7,11 @@ const DateTypeList = (props) => {
 
     return (
     <div>
-        {allDatesList} 
-        {allErasDatesList}
+        <div className='container'><h2>All Date Types</h2>{allDatesList}</div>
+        <div className='container'><h2>All Eras and Associated Dates</h2>{allErasDatesList}</div>
         <button onClick={props.back}>Hide Dates</button>
     </div>
         )
 }
-/*
-
-
-<div>${allDatesList}</div>
-*/
 
 export default DateTypeList
