@@ -11,7 +11,7 @@ export default class TestComponent extends Component {
     }
 
     fetchDateTypes() {
-        fetch('http://localhost:9000/api/datetypes').then(
+        fetch('http://localhost:9000/api/eras').then(
             response => response.json()).then(
                 data => {
                     if (data.message === 'success') {
@@ -46,6 +46,9 @@ export default class TestComponent extends Component {
       }
     handleSubmit = (event) => {
         // need to associate date with era
+        // 1. check if this date is in alldates
+        // 2. if yes post /api/eras/:era/:type to associate this date with the era
+        // 3. if no post /api/datetypes
         event.preventDefault();
         console.log("submit clicked")
         console.log(this.state.dateName)
@@ -55,7 +58,7 @@ export default class TestComponent extends Component {
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ dateName: this.state.dateName, safe: this.state.safe })
+                body: JSON.stringify({ dateName: this.state.dateName, safe: this.state.safe, era: this.state.era })
             };
             fetch('http://localhost:9000/api/datetypes', requestOptions)
             .then(response => response.json())
@@ -118,7 +121,7 @@ export default class TestComponent extends Component {
                 </div>
                 )
             } else {
-                const allDatesList = this.state.allDates.map(x => <p>{x.id} - {x.name} - safe? {x.safe}</p>)
+                const allDatesList = this.state.allDates.map(x => <p>{x.id} - {x.era} - {x.type}</p>)
                 return(<div>${allDatesList}<button onClick={this.handleHide}>Hide Dates</button></div>)
             }
             
