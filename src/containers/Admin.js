@@ -46,13 +46,13 @@ export default class Admin extends Component {
     }
 
     handleShowAll = () => {
-        this.setState({...this.state, viewAll: true}) 
-        
+        this.setState({...this.state, viewAll: true})         
     }
 
     handleHide = () => {
         this.setState({...this.state, viewAll: false})
     }
+
     handleInputChange = (event) => {
         const target = event.target
         const value = target.value;
@@ -63,29 +63,36 @@ export default class Admin extends Component {
         });
       }
     handleSubmit = (event) => {
-        // need to associate date with era
-        // 1. check if this date is in alldates
-        // 2. if yes post /api/eras/:era/:type to associate this date with the era
-        // 3. if no post /api/datetypes
+        
         event.preventDefault();
         console.log("submit clicked")
         console.log(this.state.dateName)
         console.log(this.state.era)
         console.log(this.state.safe)
         if (this.state.dateName !== "") {
-            const requestOptions = {
+            const datetypesRequestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ dateName: this.state.dateName, safe: this.state.safe, era: this.state.era })
+                body: JSON.stringify({ dateName: this.state.dateName, safe: this.state.safe})
             };
-            fetch('http://localhost:9000/api/datetypes', requestOptions)
+            const eradatesRequestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: this.state.dateName, era: this.state.era })
+            }
+            fetch('http://localhost:9000/api/datetypes', datetypesRequestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)                
+            }).then(
+                fetch(`/api/eras/${this.state.era}/${this.state.dateName}`, eradatesRequestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data)
                 if (data.status === 'success') {
                     this.fetchDateTypes();
                 }
-            });
+            }))
         }
     }
 /*
