@@ -16,7 +16,7 @@ const Welcome = (props) => {
                 <Bounce top>
                     <Admin />
                 </Bounce> 
-                <button onClick={handleBackClick}>Back</button>
+                <button onClick={handleBackClick}>Exit Admin Menu</button>
             </div>    
         )
     } else {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import DateTypeList from '../components/admin/DateTypesList'
 
 
 export default class Admin extends Component {
@@ -7,27 +8,43 @@ export default class Admin extends Component {
         safe: "true",
         era: "1920s",
         viewAll: false,
-        allDates: []
+        allDates: [],
+        allErasDates: []
     }
 
     fetchDateTypes() {
-        fetch('http://localhost:9000/api/eras').then(
+        return fetch('http://localhost:9000/api/datetypes').then(
             response => response.json()).then(
                 data => {
                     if (data.message === 'success') {
+                        console.log(data)
                         this.setState({...this.state, allDates: data.data})
+                        return data
                     } else {
                         console.log('error fetching datetypes')
+                        return []
                     }                    
-                }) 
+                })
+    }
+
+    fetchErasDates() {
+        return fetch('http://localhost:9000/api/eras').then(
+            response => response.json()).then(
+                data => {
+                    if (data.message === 'success') {
+                        console.log(data)
+                        this.setState({...this.state, allErasDates: data.data})
+                    } else {
+                        console.log('error fetching era date associations')
+                    }                    
+                })
     }
 
     componentDidMount() {
-        this.fetchDateTypes();
+        this.fetchDateTypes().then(this.fetchErasDates())
     }
 
     handleShowAll = () => {
-        console.log(this.state.allDates)
         this.setState({...this.state, viewAll: true}) 
         
     }
@@ -121,8 +138,7 @@ export default class Admin extends Component {
                 </div>
                 )
             } else {
-                const allDatesList = this.state.allDates.map(x => <p>{x.id} - {x.era} - {x.type}</p>)
-                return(<div>${allDatesList}<button onClick={this.handleHide}>Hide Dates</button></div>)
+                return(<DateTypeList back={this.handleHide} allDates={this.state.allDates} allErasDates={this.state.allErasDates}/>)
             }
             
         }
