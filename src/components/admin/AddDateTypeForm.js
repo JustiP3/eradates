@@ -4,13 +4,33 @@ const AddDateTypeForm = (props) => {
 
     return(
     <div className='container'> 
-                    <h3>Add Date</h3>
+        <div className="admin-card">
+        <h3>Add Date</h3>
                     <form onSubmit={props.handleSubmit}>
                         <label>
                             Name:
                             <input type="text" name="dateName" onChange={props.handleInputChange} />
                         </label>
+                        <br />
                         <label>
+                            Safe?:
+                        <select name="safe" onChange={props.handleInputChange}>
+                            <option value="true">true</option>
+                            <option value="false">false</option>
+                        </select>
+                        </label>
+                        <br />
+                    <input type="submit" value="Submit" />
+                    </form>
+                    <br />
+                    <button onClick={props.handleShowAll}>Show All Dates</button>
+                    <br />
+                    <button onClick={props.exitAdminMenu}>Exit Admin Menu</button>
+        </div>
+        <div className='admin-card'>
+            <h3>Assocate Date with Era</h3>
+            <form onSubmit={props.handleAssociateSubmit}>
+            <label>
                             Era:
                         <select name="era" onChange={props.handleInputChange}>
                             <option value="1920s">1920s</option>
@@ -24,19 +44,11 @@ const AddDateTypeForm = (props) => {
                             <option value="2000s">2000s</option>
                         </select>
                         </label>
-                        <label>
-                            Safe?:
-                        <select name="safe" onChange={props.handleInputChange}>
-                            <option value="true">true</option>
-                            <option value="false">false</option>
-                        </select>
-                        </label>
-                   
-                    <input type="submit" value="Submit" />
-                    </form>
-                    <button onClick={props.handleShowAll}>Show All Dates</button>
-                    <button onClick={props.exitAdminMenu}>Exit Admin Menu</button>
-                </div>
+                        <br />
+            </form>
+        </div>
+                    
+    </div>
     )
 }
 

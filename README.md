@@ -1,9 +1,10 @@
 TODO LIST
 
-- "View All Dates" button currently displays the results from /api/eras which does not account for the dates that are not yet associated with an era.
-  -Previously "View All Dates" displayed the results from /api/datetypes which only displayed datetypes and not the assocated eras.
+- 2 forms for add date - create date and assocaite date with era
 
--We can now add dates to the server from the admin menu. We need to be able to assocate a date with an era.
+- need to update submit form function for both, need to complete assocate date form.
+
+- need to update results components with content from server
 
 - In YelpResult, add option to view details about a business (location, etc.)
 

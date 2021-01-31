@@ -95,6 +95,40 @@ export default class Admin extends Component {
             }))
         }
     }
+
+    handleAssociateSubmit = (event) => {
+        
+        event.preventDefault();
+        console.log("submit clicked")
+        console.log(this.state.dateName)
+        console.log(this.state.era)
+        console.log(this.state.safe)
+        if (this.state.dateName !== "") {
+            const datetypesRequestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ dateName: this.state.dateName, safe: this.state.safe})
+            };
+            const eradatesRequestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: this.state.dateName, era: this.state.era })
+            }
+            fetch('http://localhost:9000/api/datetypes', datetypesRequestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)                
+            }).then(
+                fetch(`/api/eras/${this.state.era}/${this.state.dateName}`, eradatesRequestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.status === 'success') {
+                    this.fetchDateTypes();
+                }
+            }))
+        }
+    }
 /*
     testRequest = () => {
         const requestOptions = {
@@ -116,13 +150,16 @@ export default class Admin extends Component {
                             handleSubmit={this.handleSubmit} 
                             handleInputChange={this.handleInputChange}
                             handleShowAll={this.handleShowAll}
-                            exitAdminMenu={this.exitAdminMenu} /> 
+                            exitAdminMenu={this.exitAdminMenu} 
+                            handleAssociateSubmit={this.handleAssociateSubmit}/> 
                     </div>               
                 )
             } else {
                 return(
                 <div className='container'>
-                    <DateTypeList back={this.handleHide} allDates={this.state.allDates} allErasDates={this.state.allErasDates}/>
+                    <DateTypeList back={this.handleHide} 
+                    allDates={this.state.allDates} 
+                    allErasDates={this.state.allErasDates}/>
                     <button onClick={this.props.exitAdminMenu}>Exit Admin Menu</button>
                 </div>
                 )
