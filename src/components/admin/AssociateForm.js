@@ -25,7 +25,7 @@ const AssociateForm = (props) => {
             </label>
             <label>
                 Date Type:
-                <select name="date" onChange={props.handleInputChange}>
+                <select name="date" onChange={props.selectDateType}>
                     {dateTypeOptions}
                 </select>
             </label>

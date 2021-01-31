@@ -61,6 +61,7 @@ export default class Admin extends Component {
         const name = target.name;
     
         this.setState({
+            ...this.state,
           [name]: value
         });
       }
@@ -98,7 +99,7 @@ export default class Admin extends Component {
             body: JSON.stringify({ type: this.state.dateName, era: this.state.era})
         };
         
-        fetch(`http://localhost:9000/api/eras/${this.state.era}/${this.state.dateName}`, requestOptions)
+        fetch(`http://localhost:9000/api/eras/${this.state.era}`, requestOptions)
         .then(response => response.json())
         .then(data => {
             console.log(data)
@@ -114,10 +115,26 @@ export default class Admin extends Component {
         this.setState({...this.state, addOrAssociate: 'add'})    
     }
 
-    handleAssociate = (event) => {
+    handleAssociateClick = (event) => {
         event.preventDefault()
-        this.setState({...this.state, addOrAssociate: 'associate'})    
+        this.setState({
+            ...this.state, 
+            addOrAssociate: 'associate',
+            dateName: this.state.allDates[0].name
+        })    
+        
     }
+
+    handleSelectDateType = (event) => {
+        const target = event.target
+        const value = target.value;
+        console.log(value)
+
+        this.setState({
+            ...this.state,
+            dateName: value
+        });
+      }
 /*
     testRequest = () => {
         const requestOptions = {
@@ -138,7 +155,7 @@ export default class Admin extends Component {
                         <div className='container'>
                             <div className='card'>                        
                                 <button onClick={this.handleAdd}>Add Date</button>                               
-                                <button onClick={this.handleAssociate}>Associate Date</button>
+                                <button onClick={this.handleAssociateClick}>Associate Date</button>
                             </div>
                             <div className='card'>
                                 <AddDateTypeForm 
@@ -160,11 +177,12 @@ export default class Admin extends Component {
                         <div className='container'>
                             <div className='card'>                        
                                 <button onClick={this.handleAdd}>Add Date</button>                               
-                                <button onClick={this.handleAssociate}>Associate Date</button>
+                                <button onClick={this.handleAssociateClick}>Associate Date</button>
                             </div>
                             <div className='card'>
                                 <AssociateForm 
                                     handleInputChange={this.handleInputChange}
+                                    selectDateType={this.handleSelectDateType}
                                     handleAssociateSubmit={this.handleAssociateSubmit}
                                     allDates={this.state.allDates} />
                             </div>
