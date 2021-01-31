@@ -10,6 +10,7 @@ export default class Admin extends Component {
         safe: "true",
         era: "1920s",
         viewAll: false,
+        addOrAssociate: 'add',
         allDates: [],
         allErasDates: []
     }
@@ -88,23 +89,34 @@ export default class Admin extends Component {
     handleAssociateSubmit = (event) => {
         
         event.preventDefault();
+        console.log(this.state.dateName)
+        console.log(this.state.era)
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ type: this.state.dateName, era: this.state.era})
+        };
+        
+        fetch(`http://localhost:9000/api/eras/${this.state.era}/${this.state.dateName}`, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if (data.status === 'success') {
+                this.fetchErasDates();
+            }
+        })
+        
+    }
 
-        if (this.state.dateName !== "") {
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ type: this.state.dateName, era: this.state.era})
-            };
-           
-            fetch(`http://localhost:9000/api/eras/${this.state.era}/${this.state.dateName}`, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                if (data.status === 'success') {
-                    this.fetchDateTypes();
-                }
-            })
-        }
+    handleAdd = (event) => {
+        event.preventDefault()
+        this.setState({...this.state, addOrAssociate: 'add'})    
+    }
+
+    handleAssociate = (event) => {
+        event.preventDefault()
+        this.setState({...this.state, addOrAssociate: 'associate'})    
     }
 /*
     testRequest = () => {
@@ -121,24 +133,51 @@ export default class Admin extends Component {
         render() {
 
             if (this.state.viewAll === false) {
-                return(
-                    <div className='container'>
-                        <div className='card'>
-                            <AddDateTypeForm 
-                                handleSubmit={this.handleSubmit} 
-                                handleInputChange={this.handleInputChange}
-                                handleShowAll={this.handleShowAll}
-                                exitAdminMenu={this.props.exitAdminMenu} 
-                                handleAssociateSubmit={this.handleAssociateSubmit}
-                                allDates={this.state.allDates}/> 
-                            <AssociateForm />
-                        </div>
-                        <div className='card'>
-                            <button onClick={this.props.exitAdminMenu}>Exit Admin Menu</button>
-                        </div>
-                            
-                    </div>               
-                )
+                if (this.state.addOrAssociate === 'add') { // add form 
+                    return(
+                        <div className='container'>
+                            <div className='card'>                        
+                                <button onClick={this.handleAdd}>Add Date</button>                               
+                                <button onClick={this.handleAssociate}>Associate Date</button>
+                            </div>
+                            <div className='card'>
+                                <AddDateTypeForm 
+                                    handleSubmit={this.handleSubmit} 
+                                    handleInputChange={this.handleInputChange}
+                                    handleShowAll={this.handleShowAll}   /> 
+                            </div>
+                            <div className='card'>                        
+                                <button onClick={this.handleShowAll}>Show All Dates</button>
+                                <br />
+                                <button onClick={this.props.exitAdminMenu}>Exit Admin Menu</button>
+                            </div>
+                                
+                        </div>               
+                    )
+                } else { // associate form 
+                    return(
+                        
+                        <div className='container'>
+                            <div className='card'>                        
+                                <button onClick={this.handleAdd}>Add Date</button>                               
+                                <button onClick={this.handleAssociate}>Associate Date</button>
+                            </div>
+                            <div className='card'>
+                                <AssociateForm 
+                                    handleInputChange={this.handleInputChange}
+                                    handleAssociateSubmit={this.handleAssociateSubmit}
+                                    allDates={this.state.allDates} />
+                            </div>
+                            <div className='card'>                        
+                                <button onClick={this.handleShowAll}>Show All Dates</button>
+                                <br />
+                                <button onClick={this.props.exitAdminMenu}>Exit Admin Menu</button>
+                            </div>
+                                
+                        </div>               
+                    )
+                }
+                
             } else {
                 return(
                 <div className='container'>
