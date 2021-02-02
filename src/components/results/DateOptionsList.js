@@ -7,7 +7,7 @@ export default function DateOptionsList(props) {
     
   
   if (!!props.options) {
-    const dateIdeaList = props.options.map((x) =><DateIdea key={x.id} name={x.name} select={props.select} />)
+    const dateIdeaList = props.options.map((x) => <DateIdea key={x.id} name={x.type} select={props.select} />)
     
     return (
       <div className="container">

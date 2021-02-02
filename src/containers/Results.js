@@ -25,18 +25,32 @@ export default class Results extends Component {
     ]
   }  
 
-  datesFilteredBySafe = () => {
+  safeDates = () => {
+    // returns an object 
+    let dates 
+    let obj = {}
+
     if (this.props.state.relationshipStatus === "Not Long") {
-      return this.props.state.allDates.filter(x => x.safe === "true")
+      dates = this.props.state.allDates.filter(x => x.safe === "true")      
     } else {
-      return this.props.state.allDates
+      dates = this.props.state.allDates
     }
+    
+    for (const x of dates) {
+      obj[x.name] = "safe"
+    }
+    return obj
+  }
+
+  datesFilteredByEra = () => {
+    const obj = this.safeDates()    
+    return this.props.state.allEraDates.filter(x=> x.era === this.props.state.era && !!obj[x.type])
   }
 
 
 render() {
   if (this.state.dateSelected === "initialize"){    
-    return (<DateOptionsList options={this.datesFilteredBySafe()} select={this.select} /> )
+    return (<DateOptionsList options={this.datesFilteredByEra()} select={this.select} /> )
   } else {  //dateSelected == user Selection   
     return(<YelpResultsList businesses={this.businesses} dateSelected={this.state.dateSelected} back={this.back} />)
     }

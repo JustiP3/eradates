@@ -6,15 +6,15 @@ const Era = (props) => {
         <div className="container">
             <Zoom top>
                 <h1>Which Era Do You Want to Relive?</h1>
-                <div className="card" onClick={props.handleClick}>1920's</div>     
-                <div className="card" onClick={props.handleClick}>1930's</div>  
-                <div className="card" onClick={props.handleClick}>1940's</div>  
-                <div className="card" onClick={props.handleClick}>1950's</div>   
-                <div className="card" onClick={props.handleClick}>1960's</div>     
-                <div className="card" onClick={props.handleClick}>1970's</div>     
-                <div className="card" onClick={props.handleClick}>1980's</div> 
-                <div className="card" onClick={props.handleClick}>1990's</div>
-                <div className="card" onClick={props.handleClick}>2000's</div>                                  
+                <div className="card" onClick={props.handleClick}>1920s</div>     
+                <div className="card" onClick={props.handleClick}>1930s</div>  
+                <div className="card" onClick={props.handleClick}>1940s</div>  
+                <div className="card" onClick={props.handleClick}>1950s</div>   
+                <div className="card" onClick={props.handleClick}>1960s</div>     
+                <div className="card" onClick={props.handleClick}>1970s</div>     
+                <div className="card" onClick={props.handleClick}>1980s</div> 
+                <div className="card" onClick={props.handleClick}>1990s</div>
+                <div className="card" onClick={props.handleClick}>2000s</div>                                  
             </Zoom>
         </div>
 
