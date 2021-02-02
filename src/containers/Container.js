@@ -15,10 +15,38 @@ class Container extends Component {
       dateType: "",
       budget: 0, 
       era: "",
+      allDates: [],
+      allEraDates: []
   }
 
+  componentDidMount() {
+    this.fetchData()
+  }
+  fetchData = () => {
+    fetch('http://localhost:9000/api/datetypes').then(
+        response => response.json()).then(
+            data => {
+                if (data.message === 'success') {
+                    console.log(data)
+                    this.setState({...this.state, allDates: data.data})                    
+                } else {
+                    console.log('error fetching datetypes')                    
+                }                    
+            })
+            .then(fetch('http://localhost:9000/api/eras').then(
+              response => response.json()).then(
+                  data => {
+                      if (data.message === 'success') {
+                          console.log(data)
+                          this.setState({...this.state, allEraDates: data.data}) 
+                      } else {
+                          console.log('error fetching era date associations')
+                      }                    
+                  })) 
+}
 
     handleWelcomeClick = (event) => {
+
         this.setState({...this.state, stage: "relationshipStatus"})
     }
 
