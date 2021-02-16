@@ -8,7 +8,7 @@ export default function YelpResultsList(props) {
     const nowLoading = () => setTimeout(notLoading, 1000) 
     const notLoading = () => setLoading(false) 
 
-    const yelpResultList = props.businesses.map(x => <YelpResult business={x} key={x}/>)
+    const yelpResultList = props.businesses.map(x => <YelpResult business={x} key={x.id}/>)
 
     nowLoading()
     
